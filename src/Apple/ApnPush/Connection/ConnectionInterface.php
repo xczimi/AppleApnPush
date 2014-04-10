@@ -111,7 +111,7 @@ interface ConnectionInterface
 
     /**
      * Set time ready
-     * @see: http://www.php.net/manual/function.stream-select.php
+     * _see: http://www.php.net/manual/function.stream-select.php
      *
      * @param integer $second
      * @param integer $uSeconds
