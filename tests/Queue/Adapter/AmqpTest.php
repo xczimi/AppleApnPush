@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the AppleApnPush package
  *
  * (c) Vitaliy Zhuk <zhuk2205@gmail.com>
@@ -34,21 +34,19 @@ class AmqpAdapterTest extends \PHPUnit_Framework_TestCase
         if (!class_exists('AMQPConnection')) {
             $this->markTestSkipped('Not install PHP Amqp extension.');
         }
-
+        
         $this->queue = $this->getMock(
-            'AMQPQueue',
+            '\Apple\ApnPush\Queue\Adapter\AmqpQueueMock',
             array('get'),
             array(),
-            '',
-            false
+            ''
         );
 
         $this->exchange = $this->getMock(
-            'AMQPExchange',
+            '\Apple\ApnPush\Queue\Adapter\AmqpExchangeMock',
             array('publish'),
             array(),
-            '',
-            false
+            ''
         );
     }
 

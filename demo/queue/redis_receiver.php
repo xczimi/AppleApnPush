@@ -1,23 +1,19 @@
 <?php
 
-include_once __DIR__ . '/../include_config.php';
+include_once __DIR__ . '/../autoload.php';
 
 if (!class_exists('Redis')) {
-    print <<<TXT
-Please install PHP Redis Extension for run this demo (Redis Queue).
-
-
-TXT;
-
-    exit();
+    \Demo::error('Please install PHP Redis Extension for run this demo (Redis Queue).');
 }
 
+use Apple\ApnPush\Certificate\Certificate;
 use Apple\ApnPush\Notification\Notification;
 use Apple\ApnPush\Notification\Connection;
 use Apple\ApnPush\Queue\Redis;
 
 // Create connection
-$connection = new Connection(CERTIFICATE_FILE, PASS_PHRASE, SANDBOX_MODE);
+$certificate = new Certificate(CERTIFICATE_FILE, PASS_PHRASE);
+$connection = new Connection($certificate, SANDBOX_MODE);
 
 // Create notification
 $notification = new Notification($connection);

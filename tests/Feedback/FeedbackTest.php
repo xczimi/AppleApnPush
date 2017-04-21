@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * This file is part of the AppleApnPush package
  *
  * (c) Vitaliy Zhuk <zhuk2205@gmail.com>
@@ -30,7 +30,10 @@ class FeedbackTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection = $this->getMock(
             'Apple\ApnPush\Feedback\Connection',
-            array('is', 'write', 'isReadyRead', 'create', 'close', 'read')
+            array('is', 'write', 'isReadyRead', 'connect', 'close', 'read'),
+            array(),
+            '',
+            false
         );
     }
 
@@ -50,7 +53,7 @@ class FeedbackTest extends \PHPUnit_Framework_TestCase
         $this->connection->expects($this->any())->method('is')
             ->will($this->returnValue(false));
 
-        $this->connection->expects($this->once())->method('create');
+        $this->connection->expects($this->once())->method('connect');
 
         $this->connection->expects($this->never())->method('write');
 
